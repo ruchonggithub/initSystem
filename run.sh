@@ -1,0 +1,1 @@
+chmod u+x /root/initSystem/*;/root/initSystem/main.py
