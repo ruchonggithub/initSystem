@@ -2,7 +2,7 @@
 #
 # #不知道为什么  部署了docker上的nginx之后linux本机上的nginx就无法发挥作用
 #
-#1
+#
 # ###部署 nginx
 # rm -rf /home/nginx/
 # mkdir -p /home/nginx/{conf,conf.d,html,log}
