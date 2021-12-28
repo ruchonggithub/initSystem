@@ -70,10 +70,10 @@
 #
 #uuid=$(cat /proc/sys/kernel/random/uuid)
 #old_id="e55c8d17-2cf3-b21a-bcf1-eeacb011ed79"
-#v2ray_server_config="/etc/v2ray/config.json"
-#v2ray_client_config="/etc/v2ray/233blog_v2ray_config.json"
-#backup="/etc/v2ray/233blog_v2ray_backup.conf"
-#_v2ray_sh="/usr/local/sbin/v2ray"
+#v2ray_server_config="/etc/linkWorld/config.json"
+#v2ray_client_config="/etc/linkWorld/233blog_v2ray_config.json"
+#backup="/etc/linkWorld/233blog_v2ray_backup.conf"
+#_v2ray_sh="/usr/local/sbin/linkWorld"
 #systemd=true
 ## _test=true
 #
@@ -120,7 +120,7 @@
 #)
 #
 #_load() {
-#	local _dir="/etc/v2ray/233boy/v2ray/src/"
+#	local _dir="/etc/linkWorld/233boy/linkWorld/src/"
 #	. "${_dir}$@"
 #}
 #_sys_timezone() {
@@ -137,7 +137,7 @@
 #
 #	if [[ $IS_OPENVZ ]]; then
 #		echo
-#		echo -e "你的主机环境为 ${yellow}Openvz${none} ，建议使用${yellow}v2ray mkcp${none}系列协议。"
+#		echo -e "你的主机环境为 ${yellow}Openvz${none} ，建议使用${yellow}linkWorld mkcp${none}系列协议。"
 #		echo -e "注意：${yellow}Openvz${none} 系统时间无法由虚拟机内程序控制同步。"
 #		echo -e "如果主机时间跟实际相差${yellow}超过90秒${none}，v2ray将无法正常通信，请发ticket联系vps主机商调整。"
 #	fi
@@ -484,7 +484,7 @@
 #		echo -e "举例...你当前的域名是 $green$domain$none , 伪装的网址的是 https://liyafly.com"
 #		echo -e "然后打开你的域名时候...显示出来的内容就是来自 https://liyafly.com 的内容"
 #		echo -e "其实就是一个反代...明白就好..."
-#		echo -e "如果不能伪装成功...可以使用 v2ray config 修改伪装的网址"
+#		echo -e "如果不能伪装成功...可以使用 linkWorld config 修改伪装的网址"
 #		read -p "$(echo -e "(默认: [${cyan}https://liyafly.com$none]):")" proxy_site
 #		[[ -z $proxy_site ]] && proxy_site="https://liyafly.com"
 #
@@ -784,7 +784,7 @@
 #		$cmd install -y lrzsz git zip unzip curl wget qrencode libcap
 #	fi
 #	ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-#	[ -d /etc/v2ray ] && rm -rf /etc/v2ray
+#	[ -d /etc/linkWorld ] && rm -rf /etc/linkWorld
 #	# date -s "$(curl -sI g.cn | grep Date | cut -d' ' -f3-6)Z"
 #	_sys_timezone
 #	_sys_time
@@ -798,16 +798,16 @@
 #			echo
 #			exit 1
 #		fi
-#		mkdir -p /etc/v2ray/233boy/v2ray
-#		cp -rf $(pwd)/* /etc/v2ray/233boy/v2ray
+#		mkdir -p /etc/linkWorld/233boy/linkWorld
+#		cp -rf $(pwd)/* /etc/linkWorld/233boy/linkWorld
 #	else
 #		pushd /tmp
-#		git clone https://github.com/233boy/v2ray -b "$_gitbranch" /etc/v2ray/233boy/v2ray --depth=1
+#		git clone https://github.com/233boy/v2ray -b "$_gitbranch" /etc/linkWorld/233boy/linkWorld --depth=1
 #		popd
 #
 #	fi
 #
-#	if [[ ! -d /etc/v2ray/233boy/v2ray ]]; then
+#	if [[ ! -d /etc/linkWorld/233boy/linkWorld ]]; then
 #		echo
 #		echo -e "$red 哎呀呀...克隆脚本仓库出错了...$none"
 #		echo
@@ -816,16 +816,16 @@
 #		exit 1
 #	fi
 #
-#	# download v2ray file then install
-#	_load download-v2ray.sh
+#	# download linkWorld file then install
+#	_load download-linkWorld.sh
 #	_download_v2ray_file
 #	_install_v2ray_service
 #	_mkdir_dir
 #}
 #
 #config() {
-#	cp -f /etc/v2ray/233boy/v2ray/config/backup.conf $backup
-#	cp -f /etc/v2ray/233boy/v2ray/v2ray.sh $_v2ray_sh
+#	cp -f /etc/linkWorld/233boy/linkWorld/config/backup.conf $backup
+#	cp -f /etc/linkWorld/233boy/linkWorld/linkWorld.sh $_v2ray_sh
 #	chmod +x $_v2ray_sh
 #
 #	v2ray_id=$uuid
@@ -854,8 +854,8 @@
 #	# 	# 	systemctl start ip6tables
 #	# fi
 #
-#	# systemctl restart v2ray
-#	do_service restart v2ray
+#	# systemctl restart linkWorld
+#	do_service restart linkWorld
 #	backup_config
 #
 #}
@@ -909,7 +909,7 @@
 #}
 #show_config_info() {
 #	clear
-#	_load v2ray-info.sh
+#	_load linkWorld-info.sh
 #	_v2_args
 #	_v2_info
 #	_load ss-info.sh
@@ -917,18 +917,18 @@
 #}
 #
 #install() {
-#	if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup && -d /etc/v2ray/233boy/v2ray ]]; then
+#	if [[ -f /usr/bin/linkWorld/linkWorld && -f /etc/linkWorld/config.json ]] && [[ -f $backup && -d /etc/linkWorld/233boy/linkWorld ]]; then
 #		echo
 #		echo " 大佬...你已经安装 V2Ray 啦...无需重新安装"
 #		echo
-#		echo -e " $yellow输入 ${cyan}v2ray${none} $yellow即可管理 V2Ray${none}"
+#		echo -e " $yellow输入 ${cyan}linkWorld${none} $yellow即可管理 V2Ray${none}"
 #		echo
 #		exit 1
-#	elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/233blog_v2ray_backup.txt && -d /etc/v2ray/233boy/v2ray ]]; then
+#	elif [[ -f /usr/bin/linkWorld/linkWorld && -f /etc/linkWorld/config.json ]] && [[ -f /etc/linkWorld/233blog_v2ray_backup.txt && -d /etc/linkWorld/233boy/linkWorld ]]; then
 #		echo
 #		echo "  如果你需要继续安装.. 请先卸载旧版本"
 #		echo
-#		echo -e " $yellow输入 ${cyan}v2ray uninstall${none} $yellow即可卸载${none}"
+#		echo -e " $yellow输入 ${cyan}linkWorld uninstall${none} $yellow即可卸载${none}"
 #		echo
 #		exit 1
 #	fi
@@ -959,19 +959,19 @@
 #}
 #uninstall() {
 #
-#	if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup && -d /etc/v2ray/233boy/v2ray ]]; then
+#	if [[ -f /usr/bin/linkWorld/linkWorld && -f /etc/linkWorld/config.json ]] && [[ -f $backup && -d /etc/linkWorld/233boy/linkWorld ]]; then
 #		. $backup
 #		if [[ $mark ]]; then
 #			_load uninstall.sh
 #		else
 #			echo
-#			echo -e " $yellow输入 ${cyan}v2ray uninstall${none} $yellow即可卸载${none}"
+#			echo -e " $yellow输入 ${cyan}linkWorld uninstall${none} $yellow即可卸载${none}"
 #			echo
 #		fi
 #
-#	elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/233blog_v2ray_backup.txt && -d /etc/v2ray/233boy/v2ray ]]; then
+#	elif [[ -f /usr/bin/linkWorld/linkWorld && -f /etc/linkWorld/config.json ]] && [[ -f /etc/linkWorld/233blog_v2ray_backup.txt && -d /etc/linkWorld/233boy/linkWorld ]]; then
 #		echo
-#		echo -e " $yellow输入 ${cyan}v2ray uninstall${none} $yellow即可卸载${none}"
+#		echo -e " $yellow输入 ${cyan}linkWorld uninstall${none} $yellow即可卸载${none}"
 #		echo
 #	else
 #		echo -e "

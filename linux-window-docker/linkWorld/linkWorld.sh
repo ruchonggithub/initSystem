@@ -1,10 +1,10 @@
-#mkdir -p /etc/v2ray
+#mkdir -p /etc/linkWorld
 ##宿主机创建配置文件，这里自己可以修改端口号，例如本文的36572
 ##一个 > 是覆盖内容，两个是追加内容
-#cat > /etc/v2ray/config.json  << EOF
+#cat > /etc/linkWorld/config.json  << EOF
 #  "log" : {
-#    "access": "/var/log/v2ray/access.log",
-#    "error": "/var/log/v2ray/error.log",
+#    "access": "/var/log/linkWorld/access.log",
+#    "error": "/var/log/linkWorld/error.log",
 #    "loglevel": "warning"
 #  },
 #  "inbounds": [{
@@ -33,5 +33,5 @@ docker pull v2fly/v2fly-core
 #创建容器，指定名称v2ray
 docker stop v2ray
 docker rm v2ray
-#-v /etc/v2ray:/etc/v2ray
+#-v /etc/linkWorld:/etc/linkWorld
 docker run -itd -p 8888:8888  --name v2ray v2fly/v2fly-core sh
